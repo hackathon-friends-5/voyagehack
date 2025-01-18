@@ -7,7 +7,6 @@ import { User } from 'lucide-react';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isScrolled, setIsScrolled] = useState(false);
     const [profileImg, setProfileImg] = useState('');
     const [username, setUsername] = useState('');
 
@@ -22,19 +21,6 @@ const Navbar = () => {
         setUsername(storedUsername || '');
     }, []);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            if (window.scrollY > 50) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
     const handleSocialClick = (e) => {
         e.preventDefault();
         window.location.href = 'https://vyra.live';
@@ -42,25 +28,22 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 px-4 py-6 border-b z-50 navbar transition-all duration-300 ${isScrolled
-                    ? 'bg-opacity-70 bg-gray-800 text-white backdrop-blur-lg border-gray-700'
-                    : 'bg-opacity-50 bg-[#ededed] text-gray-800 backdrop-blur-lg border-[#9e9e9e]'
-                }`}
+            className="fixed top-0 left-0 right-0 px-4 py-6 border-b z-50 navbar bg-white/30 backdrop-blur-md border-gray-200"
             style={{
-                backdropFilter: 'blur(10px)',
-                WebkitBackdropFilter: 'blur(10px)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
             }}
         >
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                 <div className="text-lg font-bold flex-shrink-0">
-                    <Link href="/" className="hover:text-gray-400">
+                    <Link href="/" className="hover:text-gray-600">
                         VOYAGEHACK
                     </Link>
                 </div>
 
                 <div className="md:hidden flex-shrink-0 ml-auto">
                     <button
-                        className="hover:text-gray-400 focus:outline-none"
+                        className="hover:text-gray-600 focus:outline-none"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                     >
                         <svg
@@ -81,31 +64,31 @@ const Navbar = () => {
                 </div>
 
                 <ul
-                    className={`absolute md:relative top-16 md:top-auto left-0 right-0 md:flex md:items-center md:space-x-4 bg-[#ededed] md:bg-transparent p-4 md:p-0 z-40 transform ${isMenuOpen ? 'block' : 'hidden'
+                    className={`absolute md:relative top-16 md:top-auto left-0 right-0 md:flex md:items-center md:space-x-4 bg-white/30 backdrop-blur-md md:bg-transparent p-4 md:p-0 z-40 transform ${isMenuOpen ? 'block' : 'hidden'
                         } md:block`}
                 >
                     <li>
-                        <Link href="/itinerary" className="block md:inline hover:text-gray-400">
+                        <Link href="/itinerary" className="block md:inline hover:text-gray-600">
                             Itinerary
                         </Link>
                     </li>
                     <li>
-                        <a href="#" onClick={handleSocialClick} className="block md:inline hover:text-gray-400">
+                        <a href="#" onClick={handleSocialClick} className="block md:inline hover:text-gray-600">
                             Social
                         </a>
                     </li>
                     <li>
-                        <Link href="/AI-Coach" className="block md:inline hover:text-gray-400">
+                        <Link href="/AI-Coach" className="block md:inline hover:text-gray-600">
                             Test
                         </Link>
                     </li>
                     <li>
-                        <Link href="/Events" className="block md:inline hover:text-gray-400">
+                        <Link href="/Events" className="block md:inline hover:text-gray-600">
                             Events
                         </Link>
                     </li>
                     <li>
-                        <Link href="/clubs" className="block md:inline hover:text-gray-400">
+                        <Link href="/clubs" className="block md:inline hover:text-gray-600">
                             Clubs
                         </Link>
                     </li>
